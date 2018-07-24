@@ -1,0 +1,14 @@
+{
+  "name": "test-ts-import-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -f *.d.ts *.js ./vendor/some-dep/src/*.js ./vendor/some-dep/src/*.d.ts",
+    "compile": "yarn run clean && tsc"
+  },
+  "dependencies": {
+    "some-dep": "./vendor/some-dep",
+    "typescript": "~2.8"
+  }
+}

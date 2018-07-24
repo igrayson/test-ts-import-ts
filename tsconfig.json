@@ -1,0 +1,73 @@
+{
+  // https://www.typescriptlang.org/docs/handbook/compiler-options.html
+  //
+  // Note that we take a Node-centric stance on these configuration options,
+  // under the assumption that ALL of our app code will target and polyfill the
+  // environment appropriately.
+  "compilerOptions": {
+
+    // We like decorators, and are willing to take on pain due to the decorator
+    // spec being in flux.
+    "experimentalDecorators": true,
+
+    // By consistently importing tslib across our projects, we can pretty
+    // dramatically cut down on the size of compiled code.
+    "importHelpers": true,
+
+    // Node 8 supports all ES2016 runtime features, and _most_ ES2017 runtime
+    // features.
+    "lib": [
+      "es2016",
+      "es2017.intl",
+      "es2017.object",
+      "es2017.string",
+      "es2017.typedarrays",
+      "esnext.asynciterable", // TypeScript downlevels async iterators for us.
+      // This is arguable, but nearly all of our projects rely on it, and
+      // TypeScript does not support merging `lib` lists when extending.
+      "dom"
+    ],
+
+    // Node 8 doesn't support ES modules.
+    "module": "commonjs",
+
+    // Mutually exclusive; inlineSourceMap seems to have better tooling support.
+    // Inverting these appears to break: vs.code breakpoints in TS, raven-sentry source maps
+    "inlineSourceMap": false,
+    "sourceMap": false,
+
+    // Node 8 supports all ES2017 syntatic features.
+    "target": "es2017",
+
+    /**
+     * Style options enforced by the compiler.
+     */
+
+    // Handled by eslint.
+    // "forceConsistentCasingInFileNames": true,
+
+    // Our projects assume a *nix environment.
+    "newLine": "lf",
+
+    // Always include a `break` in each `case`.
+    "noFallthroughCasesInSwitch": true,
+
+    // If you want to use `any`, be explicit about it.
+    "noImplicitAny": true,
+
+    // Helps catch cases where we forgot to return something.
+    "noImplicitReturns": true,
+
+    // Helps catch ambiguous callbacks.
+    "noImplicitThis": true,
+
+    // Clean up your dead code!
+    "noUnusedLocals": true,
+
+    // Clean up your dead API! (or prefix with _ to indicate a placholder).
+    "noUnusedParameters": true,
+
+    // Enable all of TypeScript's strict checks.
+    "strict": true
+  }
+}
